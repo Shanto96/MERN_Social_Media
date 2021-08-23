@@ -1,0 +1,27 @@
+{
+  "name": "social_media",
+  "version": "1.0.0",
+  "description": "This is a social media application for practicing MERN Stack",
+  "main": "index.js",
+  "scripts": {
+    "start" : "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shanto96/MERN_Social_Media.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shanto96/MERN_Social_Media/issues"
+  },
+  "homepage": "https://github.com/Shanto96/MERN_Social_Media#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mongoose": "^5.13.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
+  }
+}
