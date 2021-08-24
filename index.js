@@ -8,17 +8,17 @@ const userRouter = require("./routes/users");
 const authRouter = require("./routes/auth")
 
 dotenv.config();
-mongoose.connect(process.env.MONGO_URL  , {useNewUrlParser: true, useUnifiedTopology: true},()=>{
+mongoose.connect(process.env.MONGO_URL  , {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true},()=>{
     console.log("Connected to MongoDB ");
 });
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
 
 //middleware
 
 app.use('/api/users',userRouter)
 app.use('/api/auth',authRouter)
-app.use(express.json());
-app.use(helmet());
-app.use(morgan("common"));
 
 
 app.get("/", (req,res) => {
