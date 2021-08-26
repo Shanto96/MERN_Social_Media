@@ -5,7 +5,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const userRouter = require("./routes/users");
-const authRouter = require("./routes/auth")
+const authRouter = require("./routes/auth");
+const postRouter = require("./routes/posts");
 
 dotenv.config();
 mongoose.connect(process.env.MONGO_URL  , {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true},()=>{
@@ -18,6 +19,7 @@ app.use(morgan("common"));
 //middleware
 
 app.use('/api/users',userRouter)
+app.use('/api/posts',postRouter)
 app.use('/api/auth',authRouter)
 
 
