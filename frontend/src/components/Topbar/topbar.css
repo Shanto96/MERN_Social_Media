@@ -1,0 +1,91 @@
+.topbar{
+    width:100%;
+    height:70px;
+    background:linear-gradient(to right, rgb(46, 192, 255), rgb(10, 130, 237));;
+    display: flex;
+    align-items: center;
+    positon:sticky;
+    top:0;
+}
+.logo{
+    font-weight: 700;
+    color:white;
+    font-size: 25px;
+    margin-left: 8%;
+}
+.topbarLeft{
+    flex:3
+}
+.topbarCenter{
+    flex:5
+}
+.topbarRight{
+    flex:4;
+    display:flex;
+    justify-content: space-around;
+    color: #fff;
+}
+.topbarCenter .searchBar{
+    background:#fff;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    height:45px;
+    overflow: hidden;
+}
+.search-icon{
+    font-size:15px;
+    margin-left: 5px;
+}
+.searchBar .search-input{
+    height:90%;
+    width:90%;
+    border: none;
+}
+.searchBar .search-input:focus{
+    outline: none;}
+.icon-info-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.profile-img{
+    height:50px;
+    width:50px;
+    border-radius:50px;
+    object-fit: cover;
+}
+.topbar-user-info{
+    display: flex;
+    align-items: center;
+}
+.icon-container,.info-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px;
+}
+.info-container{
+    gap:8px;
+}
+.topbarIconItem{
+    position: relative;
+    font-size: 15px;
+}
+.topbarIconBadge{
+    position:absolute;
+    top: -5px;
+    right:0px;
+    background-color: red;
+    border-radius:50%;
+    height: 15px;
+    width:15px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+.topbar-icon{
+    font-size: 35px !important;
+    cursor: pointer;
+}
