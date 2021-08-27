@@ -1,0 +1,97 @@
+.post-container{
+    margin:10px 0px;
+    padding: 20px 15px;
+    -webkit-box-shadow: 8px 4px 12px 1px #E0E0E0; 
+box-shadow: 8px 4px 12px 1px #E0E0E0;
+border-radius:10px
+
+}
+.post-wrapper{
+   
+
+}
+.post-top{
+ display: flex;
+ justify-content: space-between;
+ padding: 10px 0;
+}
+.post-user-info{
+ display: flex;
+ align-items: center;
+ gap: 10px;
+}
+.post-user-info .user-name{
+    font-weight: bold;
+    font-size: 20px;
+}
+.post-date{
+    color:grey;
+}
+.post-user-img{
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+    border-radius:50%;
+}
+.post-content{
+    margin-bottom: 10px;
+    display: block;
+}
+
+.post-img{
+   width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+
+}
+.post-center{
+    padding:10px 0 ;
+}
+.post-bottom{
+    padding:10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.post-react-container{
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+.like-box,.heart-box{
+    background-color: #2EBFFF;
+    color:#fff;
+    width: 25px;
+    height: 25px;
+    padding:5px;
+    border-radius:50%;
+}
+.heart-box{
+    background-color: red;
+}
+.reaction-count{
+    font-weight: bold;
+    font-size: 20px;
+}
+.post-comment-share-container{
+ display: flex;
+ gap:10px;
+ font-weight: bold;
+}
+.post-reaction{
+    display: flex;
+    padding:10px 0 ;
+    justify-content: space-around;
+   
+
+}
+.like,.comment,.share{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 25px !important;
+    gap: 10px;
+    color:grey
+}
+.like{
+    color: #0c85ee;
+}
