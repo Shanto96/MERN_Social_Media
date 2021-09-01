@@ -8,17 +8,7 @@ function Feed() {
            
             < SharePost/>
             <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+           
         </div>
     )
 }

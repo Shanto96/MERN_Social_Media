@@ -56,6 +56,7 @@ border-radius:10px
     display: flex;
     gap: 3px;
     align-items: center;
+   
 }
 .like-box,.heart-box{
     background-color: #2EBFFF;
@@ -64,6 +65,7 @@ border-radius:10px
     height: 25px;
     padding:5px;
     border-radius:50%;
+    cursor: pointer;
 }
 .heart-box{
     background-color: red;
@@ -90,8 +92,13 @@ border-radius:10px
     font-weight: bold;
     font-size: 25px !important;
     gap: 10px;
-    color:grey
+    color:grey;
+    cursor: pointer;
 }
 .like{
     color: #0c85ee;
+}
+.reaction-container{
+    display: flex;
+
 }

@@ -1,10 +1,12 @@
 import React from 'react'
+import './rightSidebar.css'
+import ProfileSidebar from './ProfileSidebar'
+import TimelineSidebar from './TimelineSidebar'
 
-function RightSidebar() {
+function RightSidebar({profile}) {
     return (
-        <div>
-            RightSidebar
-        </div>
+        profile ? <>  <ProfileSidebar/> </> :  <TimelineSidebar/>
+       
     )
 }
 

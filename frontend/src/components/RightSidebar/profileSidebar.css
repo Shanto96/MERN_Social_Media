@@ -1,0 +1,57 @@
+.profile-sidebar{
+    margin:40px 0px ;
+   padding-right: 10px;
+   position: sticky;
+   top: auto;
+    
+}
+.item-container{
+    -webkit-box-shadow: 8px 4px 12px 1px #E0E0E0; 
+    box-shadow: 8px 4px 12px 1px #E0E0E0;
+    border-radius:5px;
+    padding:10px ;
+    border-radius:10px;
+
+}
+.information-item{
+    margin:5px 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+.friends-container{
+    margin:20px 0px;
+    padding:10px;
+    display: flex;
+    border-radius:10px;
+    justify-content:center;
+    flex-direction:column;
+    -webkit-box-shadow: 8px 4px 12px 1px #E0E0E0; 
+    box-shadow: 8px 4px 12px 1px #E0E0E0;
+}
+.friends-container h4{
+    margin: 10px 0px;
+}
+
+.friend-user-img{
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    display: block;
+}
+.friend-item-wrapper{
+    display: flex;
+    gap: 5px;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+.friend-item{
+    width: 160px ;
+}
+.friend-item .user-name{
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}

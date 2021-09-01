@@ -23,4 +23,5 @@ background-color: rgb(212, 212, 212)
 }
 .left-sidebar-hr {
   margin: 10px;
+  position: sticky;
 }

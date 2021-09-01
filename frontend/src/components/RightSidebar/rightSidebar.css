@@ -1,0 +1,75 @@
+.right-sidebar-container{
+    padding:30px 20px 0px 0px;
+}
+.birthday-wrapper{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    margin-bottom: -15px;
+    -webkit-box-shadow: 8px 4px 12px 1px #E0E0E0; 
+box-shadow: 8px 4px 12px 1px #E0E0E0;
+border-radius:5px;
+}
+.birthday-icon{
+    height:40px;
+    width: 40px;
+}
+.add-banner{
+    width:400px;
+    margin-top: 25px;
+    
+}
+.banner{
+    padding: 0px ;
+   
+
+}
+.online-now{
+    margin:20px 0px;
+    padding: 0px 20px;
+    -webkit-box-shadow: 8px 4px 12px 1px #E0E0E0; 
+    box-shadow: 8px 4px 12px 1px #E0E0E0;
+    border-radius:5px;
+    padding-top: 10px;
+
+}
+.online-now h2{
+    margin: 20px 0px;
+
+}
+    
+.online-friend-list{
+    list-style: none;
+    padding: 0px;
+}
+.online-friend-list-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   
+
+
+}
+.online-friend-list-item .user-name{
+  font-weight: bold;
+  font-size: 26px;
+}
+.online-user-img{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    object-fit:cover;
+}
+.online-user-img-container{
+    position: relative;
+}
+.online-badge{
+    height: 8px;
+    width:8px; 
+    border: 2px solid #fff;
+    border-radius:50%;
+    background-color: green;
+    position: absolute;
+    top:0px;
+    right: 2px;
+}
