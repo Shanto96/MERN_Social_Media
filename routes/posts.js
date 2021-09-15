@@ -57,9 +57,9 @@ router.put("/:id/like", async (req, res) => {
     res.status(404).json("something went wrong");
   }
 });
-router.get("/timeline/all", async (req, res) => {
+router.get("/timeline/all/:id", async (req, res) => {
   try {
-    const user = await User.findById(req.body.userId);
+    const user = await User.findById(req.params.id);
     const userPost = await Post.find({ userId: user._id });
     const friendsPost = await Promise.all(
       user.following.map((friend_id) => {
@@ -71,7 +71,7 @@ router.get("/timeline/all", async (req, res) => {
     console.log(friendsPost);
     res.json(userPost.concat(...friendsPost));                                                       
   } catch (error) {
-    console.log(error);
+    console.log({error});
     res.status(404).json("something went wrong");
   }
 });

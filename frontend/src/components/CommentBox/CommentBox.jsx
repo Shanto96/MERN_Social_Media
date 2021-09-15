@@ -5,7 +5,7 @@ import CommentInput from './CommentInput'
 function CommentBox() {
     return (
         <div className="Comment-wraper">
-            <CommentInput />
+         
            <SingleComment />
         </div>
     )

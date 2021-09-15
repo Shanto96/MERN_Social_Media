@@ -1,14 +1,34 @@
-import React from 'react'
+import React,{ useState,useEffect} from 'react'
 import SharePost from '../SharePost/SharePost'
 import Post from '../Post/Post'
 import './feed.css'
+import axios from 'axios'
 function Feed() {
+   const [posts,setPosts] = useState([]);
+
+   useEffect(()=>{
+    
+    const getPosts = async() =>{
+
+        let res =  await axios.get("posts/timeline/all/612530137bfb314b9c72ccc2")
+        setPosts(res.data);
+        console.log(posts);
+
+    }
+    getPosts()
+
+
+   },[])
+
+
     return (
         <div className="feed"> 
            
             < SharePost/>
-            <Post/>
+
+            { posts.map((post)=> <Post post={post} /> ) }
            
+          
         </div>
     )
 }

@@ -9,9 +9,12 @@ const authRouter = require("./routes/auth");
 const postRouter = require("./routes/posts");
 
 dotenv.config();
-mongoose.connect(process.env.MONGO_URL  , {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true},()=>{
-    console.log("Connected to MongoDB ");
-});
+const connection = async () => {
+   await mongoose.connect(process.env.MONGO_URL  , {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true}).catch(error => console.log({error}));
+
+    ;
+}
+connection();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));

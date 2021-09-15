@@ -25,9 +25,9 @@
     padding: 5px;
     border-radius: 0px;
     border-bottom-right-radius: 15px;
-    box-shadow: 1px 7px 6px 0px rgba(0,0,0,0.42);
--webkit-box-shadow: 1px 7px 6px 0px rgba(0,0,0,0.42);
--moz-box-shadow: 1px 7px 6px 0px rgba(0,0,0,0.42);
+    box-shadow: 1px 7px 6px 0px rgba(0,0,0,0.05);
+-webkit-box-shadow: 1px 7px 6px 0px rgba(0,0,0,0.05);
+-moz-box-shadow: 1px 7px 6px 0px rgba(0,0,0,0.05);
 }
 .comment-option-item{
     display: flex;

@@ -56,7 +56,7 @@ router.delete('/:id',async(req, res) => {
 
 })
 router.get('/:id',async(req, res) => {
-   if (req.body.userId==req.params.id) {
+   
 
     
      try {
@@ -72,9 +72,7 @@ router.get('/:id',async(req, res) => {
 
 
 
-   }else {
-       res.status(500).json("You can't get information of others")
-   }
+   
 
 })
 router.put('/:id/follow',async(req, res) => {

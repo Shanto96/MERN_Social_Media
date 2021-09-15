@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 import {
   MoreVert,
@@ -7,19 +7,37 @@ import {
   QuestionAnswer,
   Share,
 } from "@material-ui/icons";
+import axios from 'axios'
 import "./post.css";
 import LottieAnimation from "../../Lottie.js";
 import like from "../../Animation/like.json";
 import love from "../../Animation/love-emoji.json";
 import haha from "../../Animation/haha-emoji.json";
 import angry from "../../Animation/angry-emoji.json";
-import CommentBox from '../CommentBox/CommentBox'
+import sad from "../../Animation/sad-emoji.json";
+import {format} from 'timeago.js'
 
-function Post() {
+import CommentBox from '../CommentBox/CommentBox'
+import CommentInput from '../CommentBox/CommentInput'
+
+function Post({post}) {
   const [showReaction, setShowReaction] = useState(false);
-  const [showComment, setShowComment] = useState(false)
+  const [showComment, setShowComment] = useState(false);
+  const [user,setUser]= useState(null);
 
   const reaction = () => {};
+
+  useEffect(()=>{
+ 
+    const getPosts = async() =>{
+
+      let res =  await axios.get(`users/${post?.userId}`)
+      setUser(res.data);
+      console.log(res.data);
+
+  }
+  getPosts()
+  },[])
 
   return (
     <div className="post-container">
@@ -27,8 +45,8 @@ function Post() {
         <div className="post-top">
           <div className="post-user-info">
             <img src="assets/IMG/user.jpeg" alt="" className="post-user-img" />
-            <span className="user-name">John Doe</span>
-            <span className="post-date">7 mins ago</span>
+            <span className="user-name">{user?.username}</span>
+            <span className="post-date">{format(post?.createdAt)}</span>
           </div>
           <div className="post-option">
             <MoreVert />
@@ -36,10 +54,7 @@ function Post() {
         </div>
         <div className="post-center">
           <span className="post-content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
-            harum reiciendis laudantium, numquam repellat ut quidem temporibus
-            consequuntur saepe ullam quod voluptatem laborum, qui dicta nihil
-            impedit iure provident commodi.
+          {post?.desc}
           </span>
           <img src="assets/IMG/user.jpeg" alt="" className="post-img" />
         </div>
@@ -51,14 +66,15 @@ function Post() {
             <div className="heart-box">
               <Favorite />
             </div>
-            <span className="reaction-count">40</span>
+            <span className="reaction-count">{post?.likes?.length||0}</span>
            
           </div>)}
           {showReaction && (
               <div className="reaction-container">
                 <LottieAnimation lotti={like} height={50} width={50} />
                 <LottieAnimation lotti={love} height={50} width={50} />
-                <LottieAnimation lotti={haha} height={50} width={50} />
+                <LottieAnimation lotti={haha} height={55} width={55} />
+                <LottieAnimation lotti={sad} height={50} width={50} />
                 <LottieAnimation lotti={angry} height={50} width={50} />
               </div>
             )}
@@ -89,6 +105,9 @@ function Post() {
          
         </div>
        { showComment && (  <div className="comment-box">
+      < CommentInput />
+            < CommentBox /> 
+            < CommentBox /> 
             < CommentBox /> 
           </div>)}
       </div>
