@@ -1,14 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef,useContext } from "react";
 import "./login.css";
+import {loginCall} from '../../apiCalls'
+import {AuthContext} from '../../Context/AuthContext'
+
+
 
 function Login() {
   const email = useRef();
   const password = useRef();
+  const {user,isFetching,error,dispatch,name} = useContext(AuthContext); 
+
   const submitHandler = async (e) => {
+   
     e.preventDefault();
-  
-    console.log(email.current.value)
+    loginCall({email:email.current.value,password:password.current.value},dispatch);
+   
   };
+
+  console.log(user,isFetching);
   return (
     <div className="Login">
       <div className="login-wraper">
@@ -23,7 +32,7 @@ function Login() {
           <form action="" onSubmit={submitHandler}>
             <input type="email" placeholder="Email Adress or User Name" ref={email} required />
             <input type="password" placeholder="Password" ref={password} minLength="6" required />
-            <button className="login-btn" type="submit">Login</button>
+            <button className="login-btn" type="submit">{isFetching?"loading": "Login"}</button>
           </form>
           <span className=" forget-password">
             <a href="">Forget Password</a>
