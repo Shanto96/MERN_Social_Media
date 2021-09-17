@@ -7,7 +7,7 @@ import {
   Group,
 } from "@material-ui/icons";
 import "./profileSidebar.css";
-function ProfileSidebar() {
+function ProfileSidebar({user}) {
   return (
     <div className="profile-sidebar">
       <div className="item-container">
@@ -18,16 +18,16 @@ function ProfileSidebar() {
         </div>
         <div className="information-item">
           <LocationOn />
-          From <b>Comilla</b>
+          From <b>{user?.from}</b>
         </div>
         <div className="information-item">
-          <LocationCity /> Live in <b>Dhaka</b>
+          <LocationCity /> Live in <b>{user?.city}</b>
         </div>
         <div className="information-item">
           <School /> Studied <b>North South University</b>
         </div>
         <div className="information-item">
-          <Group /> Relationship <b>Single</b>
+          <Group /> Relationship <b>{user?.relationShip=="1"?"single":"In a Relation"}</b>
         </div>
       </div>
 
@@ -36,7 +36,7 @@ function ProfileSidebar() {
         <div className="friend-item-wrapper">
           <div className="friend-item">
             <img
-              src="assets/IMG/user.jpeg"
+              src="/assets/IMG/user.jpeg"
               alt=""
               className="friend-user-img"
             />
@@ -44,7 +44,7 @@ function ProfileSidebar() {
           </div>
           <div className="friend-item">
             <img
-              src="assets/IMG/user.jpeg"
+              src="/assets/IMG/user.jpeg"
               alt=""
               className="friend-user-img"
             />
@@ -52,14 +52,14 @@ function ProfileSidebar() {
           </div>
           <div className="friend-item">
             <img
-              src="assets/IMG/user.jpeg"
+              src="/assets/IMG/user.jpeg"
               alt=""
               className="friend-user-img"
             />
             <span className="user-name">John Doe</span>
           </div><div className="friend-item">
             <img
-              src="assets/IMG/user.jpeg"
+              src="/assets/IMG/user.jpeg"
               alt=""
               className="friend-user-img"
             />
@@ -67,7 +67,7 @@ function ProfileSidebar() {
           </div>
           <div className="friend-item">
             <img
-              src="assets/IMG/user.jpeg"
+              src="/assets/IMG/user.jpeg"
               alt=""
               className="friend-user-img"
             />
@@ -75,7 +75,7 @@ function ProfileSidebar() {
           </div>
           <div className="friend-item">
             <img
-              src="assets/IMG/user.jpeg"
+              src="/assets/IMG/user.jpeg"
               alt=""
               className="friend-user-img"
             />

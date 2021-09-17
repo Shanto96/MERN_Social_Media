@@ -1,16 +1,40 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./userProfile.css";
+import {  useParams} from "react-router-dom";
+import axios from 'axios'
 function UserProfile() {
+  
+  const userName =   useParams();
+  const[user,setUser] = useState();
+
+  useEffect(() =>{
+    console.log(userName)
+    const getUser = async() =>{
+
+      let res =  await axios.get(`/users?userName=${userName.userName}`)
+      setUser(res.data);
+      console.log(user);
+      console.log(res.data);
+
+  }
+  getUser()
+
+
+
+
+  },[])
+
+  
   return (
     <div className="user-info-wrapper">
       <div className="cover-dp-container">
-        <img src="assets/IMG/cover.jpg" alt="Cover Pic" className="cover-img" />
+        <img src="/assets/IMG/cover.jpg" alt="Cover Pic" className="cover-img" />
 
-        <img src="assets/IMG/user.jpeg" alt="" className="dp" />
+        <img src={ user?.profilePicture || "/assets/IMG/user.jpeg"} alt="" className="dp" />
       </div>
       <div className="user-info">
-          <h2>Kibria Shanto</h2>
-          <span className="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam soluta, neque non molestias officiis assumenda omnis similique atque ipsum debitis facere tempora perspiciatis voluptatibus laudantium, minima vel odio consectetur earum officia nesciunt doloribus. Dignissimos saepe maiores architecto iure alias a aliquam asperiores, labore debitis voluptate. Sit ipsum nam adipisci consequatur.</span>
+          <h2>{user?.username}</h2>
+          <span className="desc">{user?.desc}</span>
       </div>
     </div>
   );

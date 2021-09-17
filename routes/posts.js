@@ -75,5 +75,17 @@ router.get("/timeline/all/:id", async (req, res) => {
     res.status(404).json("something went wrong");
   }
 });
+router.get("/profile-timeline/all/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const userPost = await Post.find({ userId: user._id });
+    
+    res.json(userPost);                                                       
+  } catch (error) {
+    console.log({error});
+    res.status(404).json("something went wrong");
+  }
+});
+
 
 module.exports = router;

@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./login.css";
 
 function Login() {
+  const email = useRef();
+  const password = useRef();
+  const submitHandler = async (e) => {
+    e.preventDefault();
+  
+    console.log(email.current.value)
+  };
   return (
     <div className="Login">
       <div className="login-wraper">
@@ -13,13 +20,15 @@ function Login() {
           </span>
         </div>
         <div className="login-right">
-          <form action="">
-              <input type="text" placeholder="Email Adress or User Name" />
-              <input type="passowrd" placeholder="Password" />
-              <div className="login-btn">Login</div>
+          <form action="" onSubmit={submitHandler}>
+            <input type="email" placeholder="Email Adress or User Name" ref={email} required />
+            <input type="password" placeholder="Password" ref={password} minLength="6" required />
+            <button className="login-btn" type="submit">Login</button>
           </form>
-          <span className=" forget-password"><a href="">Forget Password</a></span>
-           <div className="login-btn"> New Account</div>
+          <span className=" forget-password">
+            <a href="">Forget Password</a>
+          </span>
+          <div className="login-btn"> New Account</div>
         </div>
       </div>
     </div>

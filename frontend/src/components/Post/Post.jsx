@@ -16,6 +16,7 @@ import haha from "../../Animation/haha-emoji.json";
 import angry from "../../Animation/angry-emoji.json";
 import sad from "../../Animation/sad-emoji.json";
 import {format} from 'timeago.js'
+import {Link} from "react-router-dom"
 
 import CommentBox from '../CommentBox/CommentBox'
 import CommentInput from '../CommentBox/CommentInput'
@@ -24,6 +25,7 @@ function Post({post}) {
   const [showReaction, setShowReaction] = useState(false);
   const [showComment, setShowComment] = useState(false);
   const [user,setUser]= useState(null);
+  
 
   const reaction = () => {};
 
@@ -31,7 +33,7 @@ function Post({post}) {
  
     const getPosts = async() =>{
 
-      let res =  await axios.get(`users/${post?.userId}`)
+      let res =  await axios.get(`users?userId=${post?.userId}`);
       setUser(res.data);
       console.log(res.data);
 
@@ -43,11 +45,13 @@ function Post({post}) {
     <div className="post-container">
       <div className="post-wrapper">
         <div className="post-top">
+        <Link to={`/profile/${user?.username}`} >
           <div className="post-user-info">
             <img src="assets/IMG/user.jpeg" alt="" className="post-user-img" />
             <span className="user-name">{user?.username}</span>
             <span className="post-date">{format(post?.createdAt)}</span>
           </div>
+          </Link>
           <div className="post-option">
             <MoreVert />
           </div>
