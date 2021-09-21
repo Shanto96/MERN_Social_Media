@@ -15,3 +15,13 @@ export const loginCall= async(userCredentials, dispatch) => {
    }
 
 }
+
+export const registerCall = async(userInfo, dispatch) =>{
+    try {
+        const res =  await axios.post("auth/register",userInfo);
+        console.log(res.data)
+    } catch (error) {
+        console.log(error)
+    }
+
+}

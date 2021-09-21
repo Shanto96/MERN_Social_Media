@@ -1,25 +1,26 @@
-import React,{ useState,useEffect} from 'react'
+import React,{ useState,useEffect,useContext} from 'react'
 import SharePost from '../SharePost/SharePost'
 import Post from '../Post/Post'
 import './feed.css'
 import axios from 'axios'
-function Feed({user}) {
+import {AuthContext} from '../../Context/AuthContext'
+function Feed({userProfile}) {
    const [posts,setPosts] = useState([]);
+   const {user} =  useContext(AuthContext)
 
    useEffect(()=>{
-       console.log("user from feed ="+ user);
+      
     
     const getPosts = async() =>{
-
-        let res = user ? await axios.get(`/posts/profile-timeline/all/${user?._id}`) :  await axios.get("/posts/timeline/all/612530137bfb314b9c72ccc2")
+        console.log("user Profile page of "+userProfile?.username)
+        let res = userProfile ? await axios.get(`/posts/profile-timeline/all/${userProfile?._id}`) : await axios.get(`/posts/timeline/all/${user?._id}`) 
         setPosts(res.data);
-        console.log(posts);
-
+       
     }
     getPosts()
 
 
-   },[user])
+   },[user,userProfile?._id])
 
 
     return (

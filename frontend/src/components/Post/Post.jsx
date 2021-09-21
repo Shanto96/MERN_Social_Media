@@ -25,21 +25,24 @@ function Post({post}) {
   const [showReaction, setShowReaction] = useState(false);
   const [showComment, setShowComment] = useState(false);
   const [user,setUser]= useState(null);
+  const [liked,setLiked]= useState(false);
   
 
-  const reaction = () => {};
+  const reactionHandler = () => {
 
+  };
+  
   useEffect(()=>{
  
     const getPosts = async() =>{
 
-      let res =  await axios.get(`users?userId=${post?.userId}`);
+      let res =  await axios.get(`/users?userId=${post?.userId}`);
       setUser(res.data);
       console.log(res.data);
 
   }
   getPosts()
-  },[])
+  },[post?.userId])
 
   return (
     <div className="post-container">
@@ -47,7 +50,7 @@ function Post({post}) {
         <div className="post-top">
         <Link to={`/profile/${user?.username}`} >
           <div className="post-user-info">
-            <img src="assets/IMG/user.jpeg" alt="" className="post-user-img" />
+            <img src={user?.profilePicture||"/assets/IMG/user.jpeg"} alt="" className="post-user-img" />
             <span className="user-name">{user?.username}</span>
             <span className="post-date">{format(post?.createdAt)}</span>
           </div>
@@ -60,21 +63,21 @@ function Post({post}) {
           <span className="post-content">
           {post?.desc}
           </span>
-          <img src="assets/IMG/user.jpeg" alt="" className="post-img" />
+          <img src="/assets/IMG/user.jpeg" alt="" className="post-img" />
         </div>
           <div className="post-bottom">
           {!showReaction && ( <div className="post-react-container">
-            <div className="like-box">
+            <div className="like-box" onClick={() =>setLiked(!liked)}>
               <ThumbUpAlt />
             </div>
             <div className="heart-box">
               <Favorite />
             </div>
-            <span className="reaction-count">{post?.likes?.length||0}</span>
+            <span className="reaction-count">{liked?(post?.likes?.length||0)+1 :post?.likes?.length||0}</span>
            
           </div>)}
           {showReaction && (
-              <div className="reaction-container">
+              <div className="reaction-container" onClick={() =>{setLiked(!liked); setShowReaction(!showReaction)}}>
                 <LottieAnimation lotti={like} height={50} width={50} />
                 <LottieAnimation lotti={love} height={50} width={50} />
                 <LottieAnimation lotti={haha} height={55} width={55} />
@@ -94,6 +97,7 @@ function Post({post}) {
             onMouseOver={() => {
               setShowReaction(!showReaction);
             }}
+            onClick={() =>{setLiked(!liked); setShowReaction(!showReaction)}}
           >
             {" "}
             <ThumbUpAlt /> Like{" "}

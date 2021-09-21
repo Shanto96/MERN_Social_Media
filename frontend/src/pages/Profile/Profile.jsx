@@ -43,7 +43,7 @@ function Profile() {
           </div>
           <div className="profile-right-bottom">
             <div className="feed" >
-              <Feed user={user} />
+              <Feed userProfile={user} />
             </div>
             <div className="right-sidebar">
               <RightSidebar user={user} />

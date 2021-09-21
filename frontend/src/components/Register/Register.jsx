@@ -1,24 +1,33 @@
 import React, { useRef,useContext } from "react";
-import "./login.css";
-import {loginCall} from '../../apiCalls'
+import "./register.css";
+import {registerCall} from '../../apiCalls'
 import {AuthContext} from '../../Context/AuthContext'
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
 
 
-function Login() {
+function Register() {
   const email = useRef();
+  const username = useRef();
   const password = useRef();
-  const {user,isFetching,error,dispatch,name} = useContext(AuthContext); 
+  const rePassword = useRef();
+  
 
   const submitHandler = async (e) => {
-   
     e.preventDefault();
-    loginCall({email:email.current.value,password:password.current.value},dispatch);
+   if(password.current.value ===rePassword.current.value){
+    registerCall({username:username.current.value ,email:email.current.value,password:password.current.value});
+
+   }
+   else{
+     password.current.setCustomValidity("Both Password Didn't matched")
+   }
+   
+    
    
   };
 
-  console.log(user,isFetching);
+  
   return (
     <div className="Login">
       <div className="login-wraper">
@@ -31,15 +40,17 @@ function Login() {
         </div>
         <div className="login-right">
           <form action="" onSubmit={submitHandler}>
-            <input type="email" placeholder="Email Adress or User Name" ref={email} required />
+            <input type="email" placeholder="Email Address " ref={email} required />
+            <input type="text" placeholder=" User Name" ref={username} required />
             <input type="password" placeholder="Password" ref={password} minLength="6" required />
-            <button className="login-btn" type="submit">{isFetching?"loading": "Login"}</button>
+            <input type="password" placeholder="Re enter Password" ref={rePassword} minLength="6" required />
+            <button className="login-btn" type="submit">Register</button>
           </form>
           <span className=" forget-password">
             <a href="">Forget Password</a>
           </span>
-          <Link to="/register">
-          <button className="login-btn"> New Account</button>
+          <Link to="/login">
+          <button className="login-btn"> Login</button>
           </Link>
         </div>
       </div>
@@ -47,4 +58,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

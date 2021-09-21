@@ -16,6 +16,7 @@ border-radius:10px
  display: flex;
  align-items: center;
  gap: 10px;
+ color: #000;
 }
 .post-user-info .user-name{
     font-weight: bold;
