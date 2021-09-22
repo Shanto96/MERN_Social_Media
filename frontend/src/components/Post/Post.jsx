@@ -26,6 +26,7 @@ function Post({post}) {
   const [showComment, setShowComment] = useState(false);
   const [user,setUser]= useState(null);
   const [liked,setLiked]= useState(false);
+  const pf = process.env.REACT_APP_PUBLIC_FOLDER 
   console.log(post)
   console.log(post?.like?.length)
 
@@ -75,7 +76,7 @@ function Post({post}) {
           <span className="post-content">
           {post?.desc}
           </span>
-          <img src="/assets/IMG/user.jpeg" alt="" className="post-img" />
+         {post?.image && <img src={pf+post?.image} alt="" className="post-img" />}
         </div>
           <div className="post-bottom">
           {!showReaction && ( <div className="post-react-container">

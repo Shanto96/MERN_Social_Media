@@ -31,11 +31,12 @@ app.use('/api/posts',postRouter)
 app.use('/api/auth',authRouter)
 
 const storage =   multer.diskStorage({
-    destination: (req,res,cb) =>{
+    destination: (req,file,cb) =>{
         cb(null,"public/images");
     },
     filename: (req,file,cb) => {
-        cb(null,file.originalname);
+     
+        cb(null,Date.now()+file.originalname);
     },
 })
 
@@ -43,7 +44,10 @@ const upload = multer({storage});
 
 app.post("/api/upload",upload.single("file"),(req,res)=>{
     try {
-        return res.status(200).json("File Uploaded Successfully");
+        
+        console.log(req.file.filename);
+        let filename = req.file.filename;
+        return res.json(filename);
     } catch (error) {
         console.log(error)
     }

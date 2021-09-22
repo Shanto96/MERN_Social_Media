@@ -14,7 +14,8 @@ function Feed({userProfile}) {
     const getPosts = async() =>{
         console.log("user Profile page of "+userProfile?.username)
         let res = userProfile ? await axios.get(`/posts/profile-timeline/all/${userProfile?._id}`) : await axios.get(`/posts/timeline/all/${user?._id}`) 
-        setPosts(res.data);
+        console.log(res.data)
+        setPosts(res.data.sort(function(a, b){return a.createdAt- b.createdAt}));
        
     }
     getPosts()
