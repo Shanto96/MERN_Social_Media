@@ -26,10 +26,22 @@ function Post({post}) {
   const [showComment, setShowComment] = useState(false);
   const [user,setUser]= useState(null);
   const [liked,setLiked]= useState(false);
-  
+  console.log(post)
+  console.log(post?.like?.length)
 
-  const reactionHandler = () => {
-
+  const reactionHandler =async (postId) => {
+    console.log("Likes for post ",postId)
+    let body=  { "userId":user?._id}
+    console.log(postId);
+    try {
+      await axios.put("/api/posts/"+postId+"/like",{userId:user?._id})
+      .then(res => console.log(res.data));
+      
+      
+    } catch (error) {
+      console.log(error)
+    }
+       
   };
   
   useEffect(()=>{
@@ -67,17 +79,17 @@ function Post({post}) {
         </div>
           <div className="post-bottom">
           {!showReaction && ( <div className="post-react-container">
-            <div className="like-box" onClick={() =>setLiked(!liked)}>
+            <div className="like-box" onClick={() =>{setLiked(!liked);reactionHandler(post?._id)}}>
               <ThumbUpAlt />
             </div>
             <div className="heart-box">
               <Favorite />
             </div>
-            <span className="reaction-count">{liked?(post?.likes?.length||0)+1 :post?.likes?.length||0}</span>
+            <span className="reaction-count">{liked?(post?.like?.length||0)+1 : (post?.like?.length||0)}</span>
            
           </div>)}
           {showReaction && (
-              <div className="reaction-container" onClick={() =>{setLiked(!liked); setShowReaction(!showReaction)}}>
+              <div className="reaction-container" onClick={() =>{setLiked(!liked);reactionHandler(post?._id); setShowReaction(!showReaction)}}>
                 <LottieAnimation lotti={like} height={50} width={50} />
                 <LottieAnimation lotti={love} height={50} width={50} />
                 <LottieAnimation lotti={haha} height={55} width={55} />
@@ -97,7 +109,7 @@ function Post({post}) {
             onMouseOver={() => {
               setShowReaction(!showReaction);
             }}
-            onClick={() =>{setLiked(!liked); setShowReaction(!showReaction)}}
+            onClick={() =>{setLiked(!liked);reactionHandler(post?._id); setShowReaction(false)}}
           >
             {" "}
             <ThumbUpAlt /> Like{" "}
