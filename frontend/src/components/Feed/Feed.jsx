@@ -6,28 +6,29 @@ import axios from 'axios'
 import {AuthContext} from '../../Context/AuthContext'
 function Feed({userProfile}) {
    const [posts,setPosts] = useState([]);
-   const {user} =  useContext(AuthContext)
+   const {user} =  useContext(AuthContext);
+   const [reload,setReload]= useState(false);
 
    useEffect(()=>{
       
     
     const getPosts = async() =>{
-        console.log("user Profile page of "+userProfile?.username)
+       
         let res = userProfile ? await axios.get(`/posts/profile-timeline/all/${userProfile?._id}`) : await axios.get(`/posts/timeline/all/${user?._id}`) 
-        console.log(res.data)
-        setPosts(res.data.sort(function(a, b){return a.createdAt- b.createdAt}));
+     
+        setPosts(res.data.sort(function(a, b){return  new Date(b.createdAt)- new Date(a.createdAt)}));
        
     }
     getPosts()
 
 
-   },[user,userProfile?._id])
+   },[user,userProfile?._id],reload)
 
 
     return (
         <div className="feed"> 
            
-            < SharePost/>
+            < SharePost setReload = {setReload} reload = {reload}/>
 
             { posts.map((post)=> <Post post={post} /> ) }
            

@@ -4,13 +4,14 @@ import {
   Label,
   LocationOn,
   EmojiEmotions,
+  Cancel
 } from "@material-ui/icons";
 
 import "./sharePost.css";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from 'axios'
 
-function SharePost() {
+function SharePost({setReload,reload}) {
   const { user } = useContext(AuthContext);
   const desc = useRef();
   const [file, setFile] = useState();
@@ -31,6 +32,7 @@ function SharePost() {
       try {
         await axios.post("/upload",data)
         .then(res =>newPost.image = res.data);
+
         
       } catch (error) {
         console.log(error)
@@ -38,6 +40,7 @@ function SharePost() {
     }
     try {
       await axios.post("/posts",newPost);
+      window.location.reload();
     } catch (error) {
       console.log(error)
       
@@ -56,7 +59,10 @@ function SharePost() {
         />
       </div>
       <hr className="create-post-hr" />
-     
+       {file && <div className="profile-img-container">
+         <img src={URL.createObjectURL(file)} alt=""  className="share-img"/>
+          < Cancel onClick={()=>{setFile(null)}} className="cancel-img"/>
+         </div>}
         <div className="option-container">
           <div className="option-item-container">
             <label className="create-post-option-item" htmlFor="file">

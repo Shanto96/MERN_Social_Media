@@ -4,6 +4,7 @@ import Home from './pages/Home/Home'
 import Profile from './pages/Profile/Profile'
 import Login from './pages/Login/login'
 import RegisterPage from './pages/Register/RegisterPage'
+import Messenger from './pages/Mesenger/messenger'
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,9 +34,15 @@ function App() {
           </Route> 
           <Route path="/Register">
             <RegisterPage />
+          </Route> 
+                <Route path="/Register">
+            <RegisterPage />
           </Route>
           <Route path="/" exact >
             { user?  <Home />:<Login />}
+          </Route>
+           <Route path="/messenger" exact >
+            {<Messenger />}
           </Route>
         </Switch>
       </div>

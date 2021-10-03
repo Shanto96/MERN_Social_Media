@@ -27,15 +27,14 @@ function Post({post}) {
   const [user,setUser]= useState(null);
   const [liked,setLiked]= useState(false);
   const pf = process.env.REACT_APP_PUBLIC_FOLDER 
-  console.log(post)
-  console.log(post?.like?.length)
+  
 
   const reactionHandler =async (postId) => {
-    console.log("Likes for post ",postId)
+   
     let body=  { "userId":user?._id}
-    console.log(postId);
+    
     try {
-      await axios.put("/api/posts/"+postId+"/like",{userId:user?._id})
+      await axios.put("/posts/"+postId+"/like",{userId:user?._id})
       .then(res => console.log(res.data));
       
       
@@ -51,7 +50,7 @@ function Post({post}) {
 
       let res =  await axios.get(`/users?userId=${post?.userId}`);
       setUser(res.data);
-      console.log(res.data);
+      
 
   }
   getPosts()

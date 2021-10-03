@@ -10,7 +10,7 @@ import axios from 'axios'
 
 function Profile() {
   const userName =   useParams();
-  const[user,setUser] = useState();
+  const[profileUser,setUser] = useState();
 
   useEffect(() =>{
     console.log(userName)
@@ -18,8 +18,7 @@ function Profile() {
 
       let res =  await axios.get(`/users?userName=${userName.userName}`)
       setUser(res.data);
-      console.log(user);
-      console.log(res.data);
+     
 
   }
   getUser()
@@ -43,10 +42,10 @@ function Profile() {
           </div>
           <div className="profile-right-bottom">
             <div className="feed" >
-              <Feed userProfile={user} />
+              <Feed userProfile={profileUser} />
             </div>
             <div className="right-sidebar">
-              <RightSidebar user={user} />
+              <RightSidebar user={profileUser} />
             </div>
           </div>
         </div>

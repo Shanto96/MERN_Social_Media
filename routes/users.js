@@ -63,7 +63,7 @@ router.put("/:id/follow", async (req, res) => {
         await userToFollow.updateOne({ $push: { followers: req.body.userId } });
         res.status(200).json("You're successfully following this person");
       } else {
-        res.status(400).json("You already following this person");
+        res.status(200).json("You already following this person");
       }
     } catch (error) {
       res.status(500).json("error from here");
@@ -85,7 +85,7 @@ router.put("/:id/unfollow", async (req, res) => {
         });
         res.status(200).json("You're successfully unfollowed this person");
       } else {
-        res.status(400).json("You're not following this person");
+        res.status(200).json("You're not following this person");
       }
     } catch (error) {
       res.status(500).json("error from here");
@@ -94,5 +94,25 @@ router.put("/:id/unfollow", async (req, res) => {
     res.status(500).json("You can't follow yourself");
   }
 });
+
+////////User Friends List
+router.get("/friends/:userId" , async(req,res)=>{
+  try {
+    const user =await  User.findById(req.params.userId);
+    const friends =  await Promise.all(
+      user.following.map((friend_id)=>{
+           return User.findById(friend_id)
+      })
+    );
+    let friendList = [];
+     friends.map((friend)=>{
+      const  {_id,username,profilePicture}=friend;
+      friendList.push({_id,username,profilePicture});
+    })
+    return res.status(200).json(friendList)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;
