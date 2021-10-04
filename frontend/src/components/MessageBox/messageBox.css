@@ -1,0 +1,33 @@
+.message-wraper{
+display: flex;
+align-items: flex-start;
+gap: 15px;
+}
+.message-content{
+    display: block;
+    background: linear-gradient(to right, rgb(46, 192, 255), rgb(10, 130, 237));
+    color: #fff;
+    border-radius: 0px 10px 10px 10px;
+}
+.msg-own{
+    background: rgb(240, 240, 240);
+    color: #000;
+    border-radius: 10px 0px 10px 10px;
+}
+.message-box-top{
+    height:70vh;
+    overflow-y: scroll;
+}
+.message-box-bottom{
+    display: flex;
+    align-items: center;
+}
+.send-btn{
+    background: #10563c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 25px;
+    padding: 5px;
+    height: 45px;
+}
