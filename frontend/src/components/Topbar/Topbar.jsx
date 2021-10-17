@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 function Topbar() {
   
   const {user}= useContext(AuthContext);
-  
+  console.log("user is",user)
 
 
   return (

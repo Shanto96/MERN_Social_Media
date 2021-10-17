@@ -10,12 +10,12 @@ function Login() {
   const email = useRef();
   const password = useRef();
   const {user,isFetching,error,dispatch,name} = useContext(AuthContext); 
-
+ 
   const submitHandler = async (e) => {
    
     e.preventDefault();
     loginCall({email:email.current.value,password:password.current.value},dispatch);
-   
+     
   };
 
   console.log(user,isFetching);

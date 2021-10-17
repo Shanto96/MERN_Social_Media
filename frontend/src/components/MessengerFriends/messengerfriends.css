@@ -32,3 +32,6 @@
         font-weight: bold;
         font-size: 15px;
     }
+.pointer{
+    cursor: pointer;
+}

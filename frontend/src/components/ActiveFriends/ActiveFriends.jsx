@@ -2,7 +2,7 @@ import React from "react";
 import "./messengerfriends.css";
 function ActiveFriends() {
   return (
-    <div className="pt-4">
+    <div className="pt-4 position-fixed">
     <div className="friend-search-container">
         <h2>Active Friends</h2>
       </div>
