@@ -11,10 +11,22 @@ import {io} from 'socket.io-client'
 function Messenger() {
   const [conversation,setConversation] = useState([]);
   const [selectedConversationId,setSelectedConversationId]=useState(null);
+  const [receiverId,setReceiverId]= useState(null);
   const {user}= useContext(AuthContext);
-  const socket = useRef(io("ws://localhost:8900") ); 
+  const socket = useRef( ); 
+  const [arrivalMessage,setArrivalMessage] = useState([]);
 
-
+useEffect(() =>{
+  socket.current = io("ws://localhost:8900");
+  socket?.current?.on("getMessage",data => {
+    console.log( "data is" ,data)
+    setArrivalMessage({
+      sender  : data.senderId,
+      text:  data.text,
+      createdAt: Date.now()
+    })
+  }) 
+},[])
 
 useEffect(() => {
   socket?.current.emit("addUser",user?._id);
@@ -47,8 +59,8 @@ useEffect(() => {
           
             <Container fluid>
   <Row>
-    <Col xs={2}><MessengerFriends conversation= {conversation} setSelectedConversationId={setSelectedConversationId} /></Col>
-    <Col xs={8}> < MessageBox selectedConversationId={selectedConversationId} /> </Col>
+    <Col xs={2}><MessengerFriends conversation= {conversation} setSelectedConversationId={setSelectedConversationId} setReceiverId={setReceiverId} /></Col>
+    <Col xs={8}> < MessageBox arrivalMessage={arrivalMessage} selectedConversationId={selectedConversationId} receiverId={receiverId} socket={socket} /> </Col>
     <Col xs={2} className="m-0 p-0"><ActiveFriends /></Col>
   </Row>
   

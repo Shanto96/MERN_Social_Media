@@ -10,7 +10,7 @@ function Message({own,message}) {
 
 
   const { user } = useContext(AuthContext);
-  console.log(user._id,message.sender)
+
   return (
    
     <div> 

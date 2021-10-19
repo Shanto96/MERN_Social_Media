@@ -1,14 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
-function Conversation({conversation,currentUser,setSelectedConversationId}) {
+function Conversation({conversation,currentUser,setSelectedConversationId,setReceiverId}) {
   const [user,setUser] = useState(); 
 
 
    useEffect(()=>{
     const userId = conversation?.members?.find(c=>c!==currentUser);
-    console.log("conversation user is", userId);
+    
     const getUser = async() => {
      const user = await axios.get('/users?userId='+userId);
+     console.log("user info of fatemi",user)
      setUser(user.data);
     }
      getUser();
@@ -16,7 +17,7 @@ function Conversation({conversation,currentUser,setSelectedConversationId}) {
 
     return (
         <div>
-        <li className="listItem pointer" onClick={()=>setSelectedConversationId(conversation._id)}>
+        <li className="listItem pointer" onClick={()=>{setSelectedConversationId(conversation._id);setReceiverId(user?._id)}}>
             <img src={ user?.profilePicture || "/assets/IMG/user.jpeg"} alt="" className="user-img" />
             <span className="friend-name">{user?.username}</span>
           </li>

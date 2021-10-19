@@ -42,7 +42,8 @@ function App() {
             { user?  <Home />:<Login />}
           </Route>
            <Route path="/messenger" exact >
-            {<Messenger />}
+           { user? <Messenger />:<Login />}
+            
           </Route>
         </Switch>
       </div>

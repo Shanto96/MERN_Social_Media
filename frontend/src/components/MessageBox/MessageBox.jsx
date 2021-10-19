@@ -3,12 +3,15 @@ import "./messageBox.css";
 import Message from "./message";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext";
+import {io} from 'socket.io-client'
 
-function MessageBox({ selectedConversationId }) {
+function MessageBox({ selectedConversationId ,receiverId,socket,arrivalMessage}) {
   const [messages, setMessages] = useState([]);
   const { user } = useContext(AuthContext);
   const text= useRef();
   const scrollRef = useRef();
+  
+  
   const submitHandler = async (e) => {
     e.preventDefault();
     const newMesg = { 
@@ -16,6 +19,12 @@ function MessageBox({ selectedConversationId }) {
       sender: user._id,
       text: text.current.value
     }
+     socket?.current.emit("sendMessage",{
+       senderId: user._id,
+       receiverId : receiverId ,
+       text: text.current.value
+     } )
+
     try {
       const res =  await axios.post("/message",newMesg);
       setMessages([...messages,res.data]);
@@ -26,6 +35,10 @@ function MessageBox({ selectedConversationId }) {
     }
   }
  
+  useEffect(() => {
+    arrivalMessage.sender === receiverId && 
+    setMessages(message=>[...messages,arrivalMessage])
+  },[arrivalMessage])
 
 
   useEffect(() => {

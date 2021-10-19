@@ -1,12 +1,14 @@
- import React,{useState,useEffect} from "react";
+ import React,{useState,useEffect,useContext} from "react";
 import "./messengerfriends.css";
 import Conversation from './conversation'
 import axios from 'axios'
+import { AuthContext } from "../../Context/AuthContext";
 
 
 
-function MessengerFriends({conversation,setSelectedConversationId }) { 
-           
+function MessengerFriends({conversation,setSelectedConversationId,setReceiverId}) { 
+  const { user } = useContext(AuthContext);
+ 
 return (
     <div className="p-4 position-fixed">
       <div className="friend-search-container">
@@ -17,7 +19,7 @@ return (
       <div className="friend-list-container">
         <ul className="friendList p-0 m-3">
           {conversation.map((conversation) => {
-           return  <Conversation key={conversation._id} conversation={conversation} currentUser={"612530137bfb314b9c72ccc2"} setSelectedConversationId={setSelectedConversationId} />
+           return  <Conversation key={conversation._id} conversation={conversation} currentUser={user?._id} setSelectedConversationId={setSelectedConversationId} setReceiverId={setReceiverId} />
 
           })}
           

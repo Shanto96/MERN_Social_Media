@@ -34,11 +34,13 @@ function Topbar() {
               
               <span className="topbarIconBadge">1</span>
             </div>
-
+            <Link to={`/messenger`}>
+           
             <div className="topbarIconItem">
             <ChatIcon className="topbar-icon"/>
               <span className="topbarIconBadge">1</span>
             </div>
+            </Link>
 
             <div className="topbarIconItem">
               <PersonIcon className="topbar-icon"/>
